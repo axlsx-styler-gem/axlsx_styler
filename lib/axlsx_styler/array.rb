@@ -1,5 +1,5 @@
 module AxlsxStyler
-  class Array
+  module Array
     def add_style(style)
       validate_cells
       each do |cell|
