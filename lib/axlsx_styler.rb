@@ -1,5 +1,5 @@
-require "axlsx_styler/version"
+require 'axlsx'
 
-module AxlsxStyler
-  # Your code goes here...
-end
+require 'axlsx_styler/version'
+require 'axlsx_styler/array'
+require 'axlsx_styler/axlsx_extensions'
