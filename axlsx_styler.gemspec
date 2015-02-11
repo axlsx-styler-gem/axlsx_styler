@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = AxlsxStyler::VERSION
   spec.authors       = ["Anton Sakovich"]
   spec.email         = ["sakovias@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Separate data from styles when using Axlsx gem.}
+  # spec.description   = %q{TODO: Write a longer description. Optional.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
