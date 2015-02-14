@@ -2,7 +2,7 @@ require 'active_support/core_ext/hash/deep_merge'
 
 module AxlsxStyler
   module Axlsx
-    class Workbook
+    module Workbook
       attr_accessor :styled_cells
 
       def add_styled_cell(cell)

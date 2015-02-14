@@ -5,3 +5,4 @@ require 'axlsx_styler/array'
 require 'axlsx_styler/axlsx_extensions'
 
 Array.include AxlsxStyler::Array
+Axlsx::Workbook.include AxlsxStyler::Axlsx::Workbook
