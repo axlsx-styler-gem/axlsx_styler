@@ -18,7 +18,7 @@ module AxlsxStyler
       end
     end
 
-    class Cell
+    module Cell
       attr_accessor :raw_style
 
       def workbook
