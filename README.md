@@ -104,6 +104,7 @@ wb.add_worksheet do |sheet|
   # middle rows
   color_hash = { bg_color: 'E2F89C' }
   left_edge = wb.styles.add_style color_hash.merge(
+    b: true,
     border: {
       style: :thin, color: border_color, edges: [:left]
     }
@@ -126,6 +127,7 @@ wb.add_worksheet do |sheet|
 
   # last row
   bottom_left_corner = wb.styles.add_style color_hash.merge({
+    b: true,
     border: { style: :thin, color: border_color, edges: [:left, :bottom] }
   })
   bottom_edge = wb.styles.add_style color_hash.merge({
