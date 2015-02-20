@@ -4,6 +4,6 @@ require 'axlsx_styler/version'
 require 'axlsx_styler/array'
 require 'axlsx_styler/axlsx_extensions'
 
-Array.include AxlsxStyler::Array
-Axlsx::Workbook.include AxlsxStyler::Axlsx::Workbook
-Axlsx::Cell.include AxlsxStyler::Axlsx::Cell
+Array.send :include, AxlsxStyler::Array
+Axlsx::Workbook.send :include, AxlsxStyler::Axlsx::Workbook
+Axlsx::Cell.send :include, AxlsxStyler::Axlsx::Cell
