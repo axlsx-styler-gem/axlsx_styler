@@ -41,12 +41,18 @@ module AxlsxStyler
     def get_border_cells
       first = self.first.r
       last  = self.last.r
+
+      first_row = first.scan(/\d+/).first
+      last_row  = last.scan(/\d+/).first
+      first_col = first.scan(/\D+/).first
+      last_col  = last.scan(/\D+/).first
+
       # example range "B2:D5"
       {
-        top:     "#{first}:#{last[0]}#{first[1]}", # "B2:D2"
-        right:   "#{last[0]}#{first[1]}:#{last}",  # "D2:D5"
-        bottom:  "#{first[0]}#{last[1]}:#{last}",  # "B5:D5"
-        left:    "#{first}:#{first[0]}#{last[1]}"  # "B2:B5"
+        top:     "#{first}:#{last_col}#{first_row}", # "B2:D2"
+        right:   "#{last_col}#{first_row}:#{last}",  # "D2:D5"
+        bottom:  "#{first_col}#{last_row}:#{last}",  # "B5:D5"
+        left:    "#{first}:#{first_col}#{last_row}"  # "B2:B5"
       }
     end
 
