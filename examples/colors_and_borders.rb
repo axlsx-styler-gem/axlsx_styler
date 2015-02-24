@@ -23,4 +23,4 @@ end
 
 workbook.apply_styles
 
-axlsx.serialize File.expand_path('../grocery.xlsx', __FILE__)
+axlsx.serialize File.expand_path('../../tmp/grocery.xlsx', __FILE__)

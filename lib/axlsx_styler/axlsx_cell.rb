@@ -5,14 +5,16 @@ module AxlsxStyler
     module Cell
       attr_accessor :raw_style
 
-      def workbook
-        row.worksheet.workbook
-      end
-
       def add_style(style)
         self.raw_style ||= {}
         add_to_raw_style(style)
         workbook.add_styled_cell self
+      end
+
+      private
+
+      def workbook
+        row.worksheet.workbook
       end
 
       def add_to_raw_style(style)
