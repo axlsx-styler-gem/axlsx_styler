@@ -23,6 +23,9 @@ class IntegrationTest < MiniTest::Test
       sheet['B3:D3'].add_border [:top]
     end
     workbook.apply_styles
-    axlsx.serialize File.expand_path('../../tmp/table_with_borders_test.xlsx', __FILE__)
+    axlsx.serialize File.expand_path(
+      '../../tmp/table_with_borders_test.xlsx',
+      __FILE__
+    )
   end
 end

@@ -4,7 +4,7 @@ module AxlsxStyler
       attr_accessor :styled_cells
 
       def add_styled_cell(cell)
-        self.styled_cells ||= []
+        self.styled_cells ||= Set.new
         self.styled_cells << cell
       end
 
