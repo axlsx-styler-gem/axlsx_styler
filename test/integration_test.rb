@@ -11,15 +11,16 @@ class IntegrationTest < MiniTest::Test
       sheet.add_row ['', 'Butter', 'Dairy',      4.99]
       sheet.add_row ['', 'Bread', 'Baked Goods', 3.45]
       sheet.add_row ['', 'Broccoli', 'Produce',  2.99]
+      sheet.add_row ['', 'Pizza', 'Frozen Foods',  4.99]
       sheet.column_widths 5, 20, 20, 20
 
       # using AxlsxStyler DSL
       sheet['B2:D2'].add_style b: true
-      sheet['B2:B5'].add_style b: true
+      sheet['B2:B6'].add_style b: true
       sheet['B2:D2'].add_style bg_color: '95AFBA'
-      sheet['B3:D5'].add_style bg_color: 'E2F89C'
-      sheet['D3:D5'].add_style alignment: { horizontal: :left }
-      sheet['B2:D5'].add_border
+      sheet['B3:D6'].add_style bg_color: 'E2F89C'
+      sheet['D3:D6'].add_style alignment: { horizontal: :left }
+      sheet['B2:D6'].add_border
       sheet['B3:D3'].add_border [:top]
     end
     workbook.apply_styles
@@ -27,5 +28,6 @@ class IntegrationTest < MiniTest::Test
       '../../tmp/table_with_borders_test.xlsx',
       __FILE__
     )
+    assert_equal 12, workbook.style_index.count
   end
 end

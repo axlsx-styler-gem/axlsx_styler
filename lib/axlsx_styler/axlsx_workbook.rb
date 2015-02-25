@@ -1,7 +1,19 @@
 module AxlsxStyler
   module Axlsx
     module Workbook
+      # An array that holds all cells with styles
       attr_accessor :styled_cells
+
+      # An index for cell styles
+      #   {
+      #     < style_hash > => 1,
+      #     < style_hash > => 2,
+      #     ...
+      #     < style_hash > => K
+      #   }
+      # where keys are Cell#raw_style and values are styles
+      # codes as per Axlsx::Style
+      attr_accessor :style_index
 
       def add_styled_cell(cell)
         self.styled_cells ||= Set.new
@@ -11,7 +23,24 @@ module AxlsxStyler
       def apply_styles
         return unless styled_cells
         styled_cells.each do |cell|
-          cell.style = styles.add_style(cell.raw_style)
+          set_style_index(cell)
+        end
+      end
+
+      private
+
+      # Check if style code
+      def set_style_index(cell)
+        # @TODO fix this hack
+        self.style_index ||= {}
+
+        style = style_index[cell.raw_style]
+        if style
+          cell.style = style
+        else
+          new_style = styles.add_style(cell.raw_style)
+          cell.style = new_style
+          style_index[cell.raw_style] = new_style
         end
       end
     end
