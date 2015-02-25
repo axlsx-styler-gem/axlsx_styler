@@ -23,7 +23,7 @@ module AxlsxStyler
         new_style = raw_style.deep_merge style
         if with_border?(raw_style) && with_border?(style)
           border_at = raw_style[:border][:edges] + style[:border][:edges]
-          new_style[:border][:edges] = border_at
+          new_style[:border][:edges] = border_at.uniq
         elsif with_border?(style)
           new_style[:border] = style[:border]
         end

@@ -1,4 +1,9 @@
 module AxlsxStyler
+  # @TODO
+  # Move the functionality from Array to Worksheet. New DSL
+  #   sheet.add_style 'A1:B5', b: true
+  # instead of
+  #   sheet['A1:B5'].add_style, b: true
   module Array
     def add_style(style)
       validate_cells
@@ -13,7 +18,7 @@ module AxlsxStyler
     #   hardcode style to :thin for now
     def add_border(edges = :all)
       validate_cells
-      selected_edges(edges).each{ |edge| add_border_at(edge) }
+      selected_edges(edges).each { |edge| add_border_at(edge) }
     end
 
     private

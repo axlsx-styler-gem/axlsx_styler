@@ -52,4 +52,26 @@ class IntegrationTest < MiniTest::Test
       __FILE__
     )
   end
+
+  def test_duplicate_styles
+    axlsx = Axlsx::Package.new
+    workbook = axlsx.workbook
+    workbook.add_worksheet do |sheet|
+      sheet.add_row %w(Index City)
+      sheet.add_row [1, 'Ottawa']
+      sheet.add_row [2, 'Boston']
+
+      sheet['A1:B1'].add_border [:bottom]
+      sheet['A1:B1'].add_border [:bottom]
+      sheet['A1:A3'].add_style b: true
+      sheet['A1:A3'].add_style b: true
+    end
+    workbook.apply_styles
+    assert_equal 4, workbook.styled_cells.count
+    assert_equal 3, workbook.style_index.count
+    axlsx.serialize File.expand_path(
+      '../../tmp/duplicate_styles.xlsx',
+      __FILE__
+    )
+  end
 end
