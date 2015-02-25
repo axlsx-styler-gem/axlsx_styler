@@ -25,9 +25,31 @@ class IntegrationTest < MiniTest::Test
     end
     workbook.apply_styles
     axlsx.serialize File.expand_path(
-      '../../tmp/table_with_borders_test.xlsx',
+      '../../tmp/borders_test.xlsx',
       __FILE__
     )
     assert_equal 12, workbook.style_index.count
+  end
+
+  def test_table_with_num_fmt
+    axlsx = Axlsx::Package.new
+    workbook = axlsx.workbook
+    t = Time.now
+    day = 24 * 60 * 60
+    workbook.add_worksheet do |sheet|
+      sheet.add_row %w(Date Count Percent)
+      sheet.add_row [t - 2 * day, 2, 2.to_f / 11]
+      sheet.add_row [t - 1 * day, 3, 3.to_f / 11]
+      sheet.add_row [t,           6, 6.to_f / 11]
+
+      sheet['A1:B1'].add_style b: true
+      sheet['A2:A4'].add_style format_code: 'YYYY-MM-DD hh:mm:ss'
+    end
+    workbook.apply_styles
+    assert_equal 2, workbook.style_index.count
+    axlsx.serialize File.expand_path(
+      '../../tmp/num_fmt_test.xlsx',
+      __FILE__
+    )
   end
 end

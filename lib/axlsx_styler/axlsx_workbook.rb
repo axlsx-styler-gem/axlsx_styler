@@ -40,6 +40,11 @@ module AxlsxStyler
         else
           new_style = styles.add_style(cell.raw_style)
           cell.style = new_style
+
+          # :num_fmt is distinct even though the styles are
+          # the same; not sure if it's intended functionality
+          cell.raw_style.delete(:num_fmt)
+
           style_index[cell.raw_style] = new_style
         end
       end
