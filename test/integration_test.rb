@@ -38,15 +38,17 @@ class IntegrationTest < MiniTest::Test
     day = 24 * 60 * 60
     workbook.add_worksheet do |sheet|
       sheet.add_row %w(Date Count Percent)
-      sheet.add_row [t - 2 * day, 2, 2.to_f / 11]
-      sheet.add_row [t - 1 * day, 3, 3.to_f / 11]
-      sheet.add_row [t,           6, 6.to_f / 11]
+      sheet.add_row [t - 2 * day, 2, 2.to_f.round(2) / 11]
+      sheet.add_row [t - 1 * day, 3, 3.to_f.round(2) / 11]
+      sheet.add_row [t,           6, 6.to_f.round(2) / 11]
 
       sheet.add_style 'A1:B1', b: true
       sheet.add_style 'A2:A4', format_code: 'YYYY-MM-DD hh:mm:ss'
     end
     workbook.apply_styles
     assert_equal 2, workbook.style_index.count
+    assert_equal 2 + 2, workbook.style_index.keys.max
+    assert_equal 5, workbook.styled_cells.count
     axlsx.serialize File.expand_path(
       '../../tmp/num_fmt_test.xlsx',
       __FILE__
