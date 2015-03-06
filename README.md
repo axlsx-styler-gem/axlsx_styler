@@ -14,21 +14,21 @@ This gem extend `Array` class in a way that allows you to apply
 styles to ranges of cells, e.g.
 
 ```ruby
-sheet["A1:D10"].add_style b: true
+sheet.add_style 'A1:D10', b: true
 ```
 
 The styles can be overlayed, so that later on you can add another style
 to cells that already have styles, e.g.
 
 ```ruby
-sheet["A1:D1"].add_style bg_color: 'FF0000'
+sheet.add_style 'A1:D1', bg_color: 'FF0000'
 ```
 
 You can also add borders to ranges of cells:
 
 ```ruby
-sheet["B2:D5"].add_border
-sheet["B2:B5"].add_border [:right]
+sheet.add_border 'B2:D5'
+sheet.add_border 'B2:D5', [:right]
 ```
 
 When you are done with styling you just need to run
@@ -38,7 +38,7 @@ workbook.apply_styles
 ```
 
 Here's an example that compares styling a simple table with and without
-AxlsxStyler. Suppose make our spreadsheet to look as follows:
+AxlsxStyler. Suppose we wand to create the following spreadsheet:
 
 ![alt text](./spreadsheet.png "Sample Spreadsheet")
 
@@ -51,34 +51,31 @@ require 'axlsx_styler'
 
 axlsx = Axlsx::Package.new
 workbook = axlsx.workbook
-
 workbook.add_worksheet do |sheet|
   sheet.add_row
-  sheet.add_row ["", "Product", "Category", "Price"]
-  sheet.add_row ["", "Butter", "Dairy", 4.99]
-  sheet.add_row ["", "Bread", "Baked Goods", 3.45]
-  sheet.add_row ["", "Broccoli", "Produce", 2.99]
+  sheet.add_row ['', 'Product', 'Category',  'Price']
+  sheet.add_row ['', 'Butter', 'Dairy',      4.99]
+  sheet.add_row ['', 'Bread', 'Baked Goods', 3.45]
+  sheet.add_row ['', 'Broccoli', 'Produce',  2.99]
   sheet.column_widths 5, 20, 20, 20
 
   # using AxlsxStyler DSL
-  sheet["B2:D2"].add_style b: true
-  sheet["B2:B5"].add_style b: true
-  sheet["B2:D2"].add_style bg_color: "95AFBA"
-  sheet["B3:D5"].add_style bg_color: "E2F89C"
-  sheet["D3:D5"].add_style alignment: { horizontal: :left }
-  sheet["B2:D5"].add_border
-  sheet["B3:D3"].add_border [:top]
+  sheet.add_style 'B2:D2', b: true
+  sheet.add_style 'B2:B5', b: true
+  sheet.add_style 'B2:D2', bg_color: '95AFBA'
+  sheet.add_style 'B3:D5', bg_color: 'E2F89C'
+  sheet.add_style 'D3:D5', alignment: { horizontal: :left }
+  sheet.add_border 'B2:D5'
+  sheet.add_border 'B3:D3', [:top]
 end
-
 workbook.apply_styles
-
-axlsx.serialize "grocery.xlsx"
+axlsx.serialize 'grocery.xlsx'
 ```
 
 ### With plain `Axlsx` gem
 
 This example can be DRYied up, but it gives you a rough idea of what you
-need to go through.
+need to go through. You need to compile all the styles before you apply them.
 
 ```ruby
 require 'axlsx'
