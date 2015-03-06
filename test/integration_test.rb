@@ -29,6 +29,7 @@ class IntegrationTest < MiniTest::Test
       __FILE__
     )
     assert_equal 12, workbook.style_index.count
+    assert_equal 12 + 2, workbook.style_index.keys.max
   end
 
   def test_table_with_num_fmt

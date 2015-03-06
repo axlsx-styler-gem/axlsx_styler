@@ -6,10 +6,10 @@ module AxlsxStyler
 
       # An index for cell styles
       #   {
-      #     < style_hash > => 1,
-      #     < style_hash > => 2,
+      #     1 => < style_hash >,
+      #     2 => < style_hash >,
       #     ...
-      #     < style_hash > => K
+      #     K => < style_hash >
       #   }
       # where keys are Cell#raw_style and values are styles
       # codes as per Axlsx::Style
@@ -34,18 +34,15 @@ module AxlsxStyler
         # @TODO fix this hack
         self.style_index ||= {}
 
-        style = style_index[cell.raw_style]
-        if style
-          cell.style = style
+        index_item = style_index.select { |_, v| v == cell.raw_style }.first
+        if index_item
+          cell.style = index_item.first
         else
+          old_style = cell.raw_style.dup
           new_style = styles.add_style(cell.raw_style)
           cell.style = new_style
-
-          # :num_fmt is distinct even though the styles are
-          # the same; not sure if it's intended functionality
-          cell.raw_style.delete(:num_fmt)
-
-          style_index[cell.raw_style] = new_style
+          # cell.raw_style.delete(:num_fmt)
+          style_index[new_style] = old_style
         end
       end
     end
