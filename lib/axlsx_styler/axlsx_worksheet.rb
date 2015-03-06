@@ -6,9 +6,9 @@ module AxlsxStyler
       # Example:
       #   add_style 'A1:B5', b: true, sz: 14
       def add_style(cell_ref, style)
-        self[cell_ref].each do |cell|
-          cell.add_style(style)
-        end
+        item = self[cell_ref]
+        cells = item.is_a?(Array) ? item : [item]
+        cells.each { |cell| cell.add_style(style) }
       end
 
       # Examples:
