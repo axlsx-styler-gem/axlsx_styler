@@ -1,17 +1,19 @@
-# AxlsxStyler
+# axlsx_styler
 
-[Axlsx](https://github.com/randym/axlsx) gem is an excellent tool to
+[axlsx](https://github.com/randym/axlsx) gem is an excellent tool to
 build Excel spreadsheets. The sheets are
 created row-by-row and styles are immediately added to each cell when a
-row is created. This gem allows to follow an alternative route: fill out
-a spreadsheet with data and apply styles later. Styles can be added
-to individual cells as well as to ranges of cells. As a bonus, this gem
-also simplifies drawing borders around groups of cells.
+row is created.
+
+`axlsx_styler` allows to separate styles from content: you can fill out
+a spreadsheet with data and apply styles later. Paired with
+[axlsx_rails](https://github.com/straydogstudio/axlsx_rails) this gem
+allows to build clean and maintainable Excel views in a Rails app. It can also
+be used outside of any specific ruby framework as shown in example below.
 
 ## Usage
 
-This gem extend `Array` class in a way that allows you to apply
-styles to ranges of cells, e.g.
+This gem provides a DSL that allows you to apply styles to ranges of cells, e.g.
 
 ```ruby
 sheet.add_style 'A1:D10', b: true
@@ -38,13 +40,14 @@ workbook.apply_styles
 ```
 
 Here's an example that compares styling a simple table with and without
-AxlsxStyler. Suppose we wand to create the following spreadsheet:
+`axlsx_styler`. Suppose we wand to create the following spreadsheet:
 
 ![alt text](./spreadsheet.png "Sample Spreadsheet")
 
-### With `AxlsxStyler`
+### `axlsx` paired with `axlsx_styler`
 
-Just follow the step outlined above:
+You can apply styles after all data is entered, similar to how you'd create
+an Excel document by hand:
 
 ```ruby
 require 'axlsx_styler'
@@ -72,10 +75,10 @@ workbook.apply_styles
 axlsx.serialize 'grocery.xlsx'
 ```
 
-### With plain `Axlsx` gem
+### `axlsx` gem without `axlsx_styler`
 
-This example can be DRYied up, but it gives you a rough idea of what you
-need to go through. You need to compile all the styles before you apply them.
+Whith plain `axlsx` you need to know which styles you're going to use beforehand.
+The code for our example is a bit more envolved:
 
 ```ruby
 require 'axlsx'
