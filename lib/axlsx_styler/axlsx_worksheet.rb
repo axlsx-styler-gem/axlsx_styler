@@ -20,6 +20,14 @@ module AxlsxStyler
         cells = self[cell_ref]
         BorderCreator.new(self, cells, edges).draw
       end
+
+      # Example
+        # bold = { b: true }
+        # large_text = { sz: 30 }
+        # add_multiple_styles 'B2:F8', bold, large_text
+      def add_multiple_styles(cell_ref, *styles)
+        styles.each { |style| add_style(cell_ref, style) }
+      end
     end
   end
 end
