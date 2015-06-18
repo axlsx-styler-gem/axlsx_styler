@@ -76,4 +76,27 @@ class IntegrationTest < MiniTest::Test
       __FILE__
     )
   end
+
+  def test_multiple_named_styles
+    axlsx = Axlsx::Package.new
+    workbook = axlsx.workbook
+    bold = { b: true }
+    large = { sz: 16 }
+    red = { fg_color: 'FF0000' }
+    workbook.add_worksheet do |sheet|
+      sheet.add_row %w(Index City)
+      sheet.add_row [1, 'Ottawa']
+      sheet.add_row [2, 'Boston']
+
+      sheet.add_style 'A1:B1', bold, large
+      sheet.add_style 'A1:A3', red
+    end
+    workbook.apply_styles
+    assert_equal 4, workbook.styled_cells.count
+    assert_equal 3, workbook.style_index.count
+    axlsx.serialize File.expand_path(
+      '../../tmp/multiple_named_styles.xlsx',
+      __FILE__
+    )
+  end
 end

@@ -3,10 +3,10 @@ require_relative './border_creator'
 module AxlsxStyler
   module Axlsx
     module Worksheet
-      # Example to add single style
+      # Example to add a single style:
       #   add_style 'A1:B5', b: true, sz: 14
-
-      # Example to add multiple styles
+      #
+      # Example to add multiple styles:
       #   bold = { b: true }
       #   large_text = { sz: 30 }
       #   add_style 'B2:F8', bold, large_text
