@@ -16,7 +16,7 @@ be used outside of any specific ruby framework as shown in example below.
 This gem provides a DSL that allows you to apply styles to ranges of cells, e.g.
 
 ```ruby
-sheet.add_style 'A1:D10', b: true
+sheet.add_style 'A1:D10', b: true, sz: 14
 ```
 
 The styles can be overlayed, so that later on you can add another style
@@ -24,6 +24,14 @@ to cells that already have styles, e.g.
 
 ```ruby
 sheet.add_style 'A1:D1', bg_color: 'FF0000'
+```
+
+Applying multiple styles as a sequence of Ruby hashes is also possible:
+
+```ruby
+bold     = { b: true }
+centered = { alignment: { horizontal: :center } }
+sheet.add_style 'A2:D2', bold, centered
 ```
 
 You can also add borders to ranges of cells:
