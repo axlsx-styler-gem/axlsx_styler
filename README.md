@@ -39,6 +39,9 @@ You can also add borders to ranges of cells:
 ```ruby
 sheet.add_border 'B2:D5'
 sheet.add_border 'B2:D5', [:right]
+sheet.add_border 'B2:D5', [:right], :thick
+border_color = 'FF0000'
+sheet.add_border 'B2:D5', [:right], :medium, border_color
 ```
 
 When you are done with styling you just need to run
@@ -77,7 +80,7 @@ workbook.add_worksheet do |sheet|
   sheet.add_style 'B3:D5', bg_color: 'E2F89C'
   sheet.add_style 'D3:D5', alignment: { horizontal: :left }
   sheet.add_border 'B2:D5'
-  sheet.add_border 'B3:D3', [:top]
+  sheet.add_border 'B3:D3', [:top], :medium
 end
 workbook.apply_styles
 axlsx.serialize 'grocery.xlsx'
@@ -106,7 +109,7 @@ wb.add_worksheet do |sheet|
     border: { style: :thin, color: border_color, edges: [:top, :right, :bottom] }
   })
   sheet.add_row
-  sheet.add_row(["", "Product", "Category", "Price"], 
+  sheet.add_row(["", "Product", "Category", "Price"],
     style: [ nil, top_left_corner, top_edge, top_right_corner ]
   )
 
