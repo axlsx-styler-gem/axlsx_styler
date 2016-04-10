@@ -1,12 +1,18 @@
 class BorderCreator
   attr_reader :worksheet, :cells, :edges, :width, :color
 
-  def initialize(worksheet, cells, edges, width, color)
+  def initialize(worksheet, cells, args)
     @worksheet = worksheet
     @cells     = cells
-    @edges     = edges
-    @width     = width
-    @color     = color
+    if args.is_a?(Hash)
+      @edges = args[:edges] || :all
+      @width = args[:width] || :thin
+      @color = args[:color] || '000000'
+    else
+      @edges = args || :all
+      @width = :thin
+      @color = '000000'
+    end
   end
 
   def draw
@@ -33,7 +39,6 @@ class BorderCreator
       }
     }
     worksheet.add_style border_cells[position.to_sym], style
-    # add_style border_cells(cell_ref)[position.to_sym], style
   end
 
   def border_cells

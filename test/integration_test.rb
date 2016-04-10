@@ -31,8 +31,8 @@ class IntegrationTest < MiniTest::Test
       sheet.add_style 'D3:D6', alignment: { horizontal: :left }
       sheet.add_border 'B2:D6'
       sheet.add_border 'B3:D3', [:top]
-      sheet.add_border 'B3:D3', [:bottom], :medium
-      sheet.add_border 'B3:D3', [:bottom], :medium, '32f332'
+      sheet.add_border 'B3:D3', edges: [:bottom], style: :medium
+      sheet.add_border 'B3:D3', edges: [:bottom], style: :medium, color: '32f332'
     end
     @workbook.apply_styles
     assert_equal 12, @workbook.style_index.count
