@@ -6,7 +6,7 @@ class BorderCreator
     @cells     = cells
     if args.is_a?(Hash)
       @edges = args[:edges] || :all
-      @width = args[:width] || :thin
+      @width = args[:style] || :thin
       @color = args[:color] || '000000'
     else
       @edges = args || :all
