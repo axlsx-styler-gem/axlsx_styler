@@ -38,13 +38,13 @@ You can also add borders to ranges of cells:
 
 ```ruby
 sheet.add_border 'B2:D5'
-sheet.add_border 'B2:D5', [:right]
-sheet.add_border 'B2:D5', [:right], :thick
-border_color = 'FF0000'
-sheet.add_border 'B2:D5', [:right], :medium, border_color
+sheet.add_border 'B2:D5', [:bottom, :right]
+sheet.add_border 'B2:D5', { edges: [:bottom, :right], style: :thick, color: 'FF0000' }
 ```
 
-When you are done with styling you just need to run
+Border parameters are optional. The default is to draw a thin black border on all four edges of the selected cell range.
+
+The styles are applied with a simple call:
 
 ```ruby
 workbook.apply_styles
@@ -80,7 +80,7 @@ workbook.add_worksheet do |sheet|
   sheet.add_style 'B3:D5', bg_color: 'E2F89C'
   sheet.add_style 'D3:D5', alignment: { horizontal: :left }
   sheet.add_border 'B2:D5'
-  sheet.add_border 'B3:D3', [:top], :medium
+  sheet.add_border 'B3:D3', [:top]
 end
 workbook.apply_styles
 axlsx.serialize 'grocery.xlsx'
