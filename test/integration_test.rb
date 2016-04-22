@@ -31,10 +31,63 @@ class IntegrationTest < MiniTest::Test
       sheet.add_style 'D3:D6', alignment: { horizontal: :left }
       sheet.add_border 'B2:D6'
       sheet.add_border 'B3:D3', [:top]
+      sheet.add_border 'B3:D3', edges: [:bottom], style: :medium
+      sheet.add_border 'B3:D3', edges: [:bottom], style: :medium, color: '32f332'
     end
     @workbook.apply_styles
     assert_equal 12, @workbook.style_index.count
     assert_equal 12 + 2, @workbook.style_index.keys.max
+  end
+
+  def test_duplicate_borders
+    @filename = 'duplicate_borders_test'
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row
+      sheet.add_row ['', 'B2', 'C2', 'D2']
+      sheet.add_row ['', 'B3', 'C3', 'D3']
+      sheet.add_row ['', 'B4', 'C4', 'D4']
+
+      sheet.add_border 'B2:D4'
+      sheet.add_border 'B2:D4'
+    end
+    @workbook.apply_styles
+    assert_equal 8, @workbook.style_index.count
+    assert_equal 8, @workbook.styled_cells.count
+  end
+
+  def test_multiple_style_borders_on_same_sells
+    @filename = 'multiple_style_borders'
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row
+      sheet.add_row ['', 'B2', 'C2', 'D2']
+      sheet.add_row ['', 'B3', 'C3', 'D3']
+
+      sheet.add_border 'B2:D3', :all
+      sheet.add_border 'B2:D2', edges: [:bottom], style: :thick, color: 'ff0000'
+    end
+    @workbook.apply_styles
+    assert_equal 6, @workbook.style_index.count
+    assert_equal 6, @workbook.styled_cells.count
+
+    b2_cell_style = {
+      border: {
+        style: :thick,
+        color: 'ff0000',
+        edges: [:top, :left, :bottom]
+      }
+    }
+    assert_equal b2_cell_style, @workbook.style_index
+      .find { |_, v| v[:border][:edges] == [:top, :left, :bottom] }[1]
+
+    d3_cell_style = {
+      border: {
+        style: :thin,
+        color: '000000',
+        edges: [:right, :bottom]
+      }
+    }
+    assert_equal d3_cell_style, @workbook.style_index
+      .find { |_, v| v[:border][:edges] == [:right, :bottom] }[1]
   end
 
   def test_table_with_num_fmt

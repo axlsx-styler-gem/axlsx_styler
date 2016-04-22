@@ -38,10 +38,13 @@ You can also add borders to ranges of cells:
 
 ```ruby
 sheet.add_border 'B2:D5'
-sheet.add_border 'B2:D5', [:right]
+sheet.add_border 'B2:D5', [:bottom, :right]
+sheet.add_border 'B2:D5', { edges: [:bottom, :right], style: :thick, color: 'FF0000' }
 ```
 
-When you are done with styling you just need to run
+Border parameters are optional. The default is to draw a thin black border on all four edges of the selected cell range.
+
+The styles are applied with a simple call:
 
 ```ruby
 workbook.apply_styles
@@ -106,7 +109,7 @@ wb.add_worksheet do |sheet|
     border: { style: :thin, color: border_color, edges: [:top, :right, :bottom] }
   })
   sheet.add_row
-  sheet.add_row(["", "Product", "Category", "Price"], 
+  sheet.add_row(["", "Product", "Category", "Price"],
     style: [ nil, top_left_corner, top_edge, top_right_corner ]
   )
 

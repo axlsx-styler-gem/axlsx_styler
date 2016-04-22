@@ -1,14 +1,22 @@
 class BorderCreator
-  attr_reader :worksheet, :cells, :edges
+  attr_reader :worksheet, :cells, :edges, :width, :color
 
-  def initialize(worksheet, cells, edges)
+  def initialize(worksheet, cells, args)
     @worksheet = worksheet
     @cells     = cells
-    @edges     = edges
+    if args.is_a?(Hash)
+      @edges = args[:edges] || :all
+      @width = args[:style] || :thin
+      @color = args[:color] || '000000'
+    else
+      @edges = args || :all
+      @width = :thin
+      @color = '000000'
+    end
   end
 
   def draw
-    selected_edges(edges).each { |edge| add_border(edge) }
+    selected_edges(edges).each { |edge| add_border(edge, width, color) }
   end
 
   private
@@ -24,14 +32,13 @@ class BorderCreator
     end
   end
 
-  def add_border(position)
+  def add_border(position, width, color)
     style = {
       border: {
-        style: :thin, color: '000000', edges: [position.to_sym]
+        style: width, color: color, edges: [position.to_sym]
       }
     }
     worksheet.add_style border_cells[position.to_sym], style
-    # add_style border_cells(cell_ref)[position.to_sym], style
   end
 
   def border_cells

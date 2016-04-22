@@ -21,13 +21,14 @@ module AxlsxStyler
       end
 
       # Examples:
-      #   add_border 'B2:F8', [:left, :top]
+      #   add_border 'B2:F8', [:left, :top], :medium, '00330f'
+      #   add_border 'B2:F8', [:left, :top], :medium
       #   add_border 'C2:G10', [:top]
       #   add_border 'C2:G10'
-      # @TODO: allow to pass in custom border style
-      def add_border(cell_ref, edges = :all)
+      #   add_border 'B2:D5', { style: :thick, color: '00330f', edges: [:left, :right] }
+      def add_border(cell_ref, args = :all)
         cells = self[cell_ref]
-        BorderCreator.new(self, cells, edges).draw
+        BorderCreator.new(self, cells, args).draw
       end
     end
   end
