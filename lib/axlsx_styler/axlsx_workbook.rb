@@ -1,3 +1,5 @@
+require 'set'
+
 module AxlsxStyler
   module Axlsx
     module Workbook
