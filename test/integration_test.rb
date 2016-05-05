@@ -73,21 +73,21 @@ class IntegrationTest < MiniTest::Test
       border: {
         style: :thick,
         color: 'ff0000',
-        edges: [:top, :left, :bottom]
+        edges: [:bottom, :left, :top]
       }
     }
     assert_equal b2_cell_style, @workbook.style_index
-      .find { |_, v| v[:border][:edges] == [:top, :left, :bottom] }[1]
+      .find { |_, v| v[:border][:edges] == [:bottom, :left, :top] }[1]
 
     d3_cell_style = {
       border: {
         style: :thin,
         color: '000000',
-        edges: [:right, :bottom]
+        edges: [:bottom, :right]
       }
     }
     assert_equal d3_cell_style, @workbook.style_index
-      .find { |_, v| v[:border][:edges] == [:right, :bottom] }[1]
+      .find { |_, v| v[:border][:edges] == [:bottom, :right] }[1]
   end
 
   def test_table_with_num_fmt
@@ -142,5 +142,37 @@ class IntegrationTest < MiniTest::Test
     @workbook.apply_styles
     assert_equal 4, @workbook.styled_cells.count
     assert_equal 3, @workbook.style_index.count
+  end
+
+  # Overriding borders (part 1)
+  def test_mixed_borders_1
+    @filename = 'mixed_borders_1'
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row
+      sheet.add_row ['', '1', '2', '3']
+      sheet.add_row ['', '4', '5', '6']
+      sheet.add_row ['', '7', '8', '9']
+      sheet.add_style 'B2:D4', border: { style: :thin, color: '000000' }
+      sheet.add_border 'C3:D4', style: :medium
+    end
+    @workbook.apply_styles
+    assert_equal 9, @workbook.styled_cells.count
+    assert_equal 2, @workbook.style_index.count
+  end
+
+  # Overriding borders (part 2)
+  def test_mixed_borders
+    @filename = 'mixed_borders_2'
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row
+      sheet.add_row ['', '1', '2', '3']
+      sheet.add_row ['', '4', '5', '6']
+      sheet.add_row ['', '7', '8', '9']
+      sheet.add_border 'B2:D4', style: :medium
+      sheet.add_style 'D2:D4', border: { style: :thin, color: '000000' }
+    end
+    @workbook.apply_styles
+    assert_equal 8, @workbook.styled_cells.count
+    assert_equal 6, @workbook.style_index.count
   end
 end
