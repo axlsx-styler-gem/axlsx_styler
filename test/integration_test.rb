@@ -10,6 +10,28 @@ class IntegrationTest < MiniTest::Test
   def teardown
     return unless @filename
     @axlsx.serialize File.expand_path("../../tmp/#{@filename}.xlsx", __FILE__)
+    assert_equal true, @workbook.styles_applied
+  end
+
+  def test_works_without_apply_styles
+    @filename = 'without_apply_styles'
+    assert_equal nil, @workbook.styles_applied
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row ['A1', 'B1']
+      sheet.add_style 'A1:B1', b: true
+    end
+  end
+
+  # Backwards compatibility for pre 0.1.4 versions
+  def test_works_with_apply_styles
+    @filename = 'with_apply_styles'
+    assert_equal nil, @workbook.styles_applied
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row ['A1', 'B1']
+      sheet.add_style 'A1:B1', b: true
+    end
+    @workbook.apply_styles
+    assert_equal 1, @workbook.style_index.count
   end
 
   def test_table_with_borders
@@ -23,7 +45,6 @@ class IntegrationTest < MiniTest::Test
       sheet.add_row ['', 'Pizza', 'Frozen Foods',  4.99]
       sheet.column_widths 5, 20, 20, 20
 
-      # using AxlsxStyler DSL
       sheet.add_style 'B2:D2', b: true
       sheet.add_style 'B2:B6', b: true
       sheet.add_style 'B2:D2', bg_color: '95AFBA'

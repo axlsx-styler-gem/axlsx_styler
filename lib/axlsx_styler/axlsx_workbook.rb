@@ -4,6 +4,10 @@ module AxlsxStyler
       # An array that holds all cells with styles
       attr_accessor :styled_cells
 
+      # Checks if styles are idexed to make it work for pre 0.1.4 version
+      # users that still explicitly call @workbook.apply_styles
+      attr_accessor :styles_applied
+
       # An index for cell styles
       #   {
       #     1 => < style_hash >,
@@ -25,13 +29,13 @@ module AxlsxStyler
         styled_cells.each do |cell|
           set_style_index(cell)
         end
+        self.styles_applied = true
       end
 
       private
 
       # Check if style code
       def set_style_index(cell)
-        # @TODO fix this hack
         self.style_index ||= {}
 
         index_item = style_index.select { |_, v| v == cell.raw_style }.first
