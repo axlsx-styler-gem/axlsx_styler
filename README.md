@@ -86,6 +86,6 @@ Producing the same spreadsheet with vanilla `axlsx` turns out [a bit trickier](.
 
 Version | Change
 --------|-------
-0.1.4 | Hide `workbook.apply_styles` method to make it usage easier.
+0.1.4 | Hide `Workbook#apply_styles` method to make it easier to use.
 0.1.3 | Make border styles customazible.
-0.1.2 | Allow applying multiple style `Hash`es on a range of cells
+0.1.2 | Allow applying multiple style hashes.

@@ -6,15 +6,22 @@ class IntegrationTest < MiniTest::Test
     @workbook = @axlsx.workbook
   end
 
-  # Save files in case you'd like to see what the result is
+  # Save to a file using Axlsx::Package#serialize
   def serialize(filename)
     @axlsx.serialize File.expand_path("../../tmp/#{filename}.xlsx", __FILE__)
     assert_equal true, @workbook.styles_applied
   end
 
-  # New functionality as of 0.1.4
-  def test_works_without_apply_styles
-    filename = 'without_apply_styles'
+  # Save to a file by getting contents from stream
+  def to_stream(filename)
+    File.open(File.expand_path("../../tmp/#{filename}.xlsx", __FILE__), 'w') do |f|
+      f.write @axlsx.to_stream.read
+    end
+  end
+
+  # New functionality as of 0.1.4 (serialize)
+  def test_works_without_apply_styles_serialize
+    filename = 'without_apply_styles_serialize'
     assert_equal nil, @workbook.styles_applied
     @workbook.add_worksheet do |sheet|
       sheet.add_row ['A1', 'B1']
@@ -24,9 +31,21 @@ class IntegrationTest < MiniTest::Test
     assert_equal 1, @workbook.style_index.count
   end
 
-  # Backwards compatibility with pre 0.1.4 versions
-  def test_works_with_apply_styles
-    filename = 'with_apply_styles'
+  # New functionality as of 0.1.4 (to_stream)
+  def test_works_without_apply_styles_to_stream
+    filename = 'without_apply_styles_to_stream'
+    assert_equal nil, @workbook.styles_applied
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row ['A1', 'B1']
+      sheet.add_style 'A1:B1', b: true
+    end
+    to_stream(filename)
+    assert_equal 1, @workbook.style_index.count
+  end
+
+  # Backwards compatibility with pre 0.1.4 (serialize)
+  def test_works_with_apply_styles_serialize
+    filename = 'with_apply_styles_serialize'
     assert_equal nil, @workbook.styles_applied
     @workbook.add_worksheet do |sheet|
       sheet.add_row ['A1', 'B1']
@@ -35,6 +54,19 @@ class IntegrationTest < MiniTest::Test
     @workbook.apply_styles # important for backwards compatibility
     assert_equal 1, @workbook.style_index.count
     serialize(filename)
+  end
+
+  # Backwards compatibility with pre 0.1.4 (to_stream)
+  def test_works_with_apply_styles_to_stream
+    filename = 'with_apply_styles_to_stream'
+    assert_equal nil, @workbook.styles_applied
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row ['A1', 'B1']
+      sheet.add_style 'A1:B1', b: true
+    end
+    @workbook.apply_styles # important for backwards compatibility
+    assert_equal 1, @workbook.style_index.count
+    to_stream(filename)
   end
 
   def test_table_with_borders
