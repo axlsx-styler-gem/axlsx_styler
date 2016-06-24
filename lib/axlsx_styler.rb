@@ -16,7 +16,7 @@ module Axlsx
     # applied when the workbook is saved
     original_serialize = instance_method(:serialize)
     define_method :serialize do |*args|
-      @workbook.apply_styles if !@workbook.styles_applied
+      workbook.apply_styles if !workbook.styles_applied
       original_serialize.bind(self).(*args)
     end
 
@@ -24,7 +24,7 @@ module Axlsx
     # applied when the workbook is converted to StringIO
     original_to_stream = instance_method(:to_stream)
     define_method :to_stream do |*args|
-      @workbook.apply_styles if !@workbook.styles_applied
+      workbook.apply_styles if !workbook.styles_applied
       original_to_stream.bind(self).(*args)
     end
   end
