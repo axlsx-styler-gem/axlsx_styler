@@ -6,7 +6,7 @@ module AxlsxStyler
       # An array that holds all cells with styles
       attr_accessor :styled_cells
 
-      # Checks if styles are idexed to make it work for pre 0.1.4 version
+      # Checks if styles are idexed to make it work for pre 0.1.5 version
       # users that still explicitly call @workbook.apply_styles
       attr_accessor :styles_applied
 

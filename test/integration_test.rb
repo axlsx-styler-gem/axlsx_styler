@@ -19,7 +19,7 @@ class IntegrationTest < MiniTest::Test
     end
   end
 
-  # New functionality as of 0.1.4 (serialize)
+  # New functionality as of 0.1.5 (serialize)
   def test_works_without_apply_styles_serialize
     filename = 'without_apply_styles_serialize'
     assert_equal nil, @workbook.styles_applied
@@ -31,7 +31,7 @@ class IntegrationTest < MiniTest::Test
     assert_equal 1, @workbook.style_index.count
   end
 
-  # New functionality as of 0.1.4 (to_stream)
+  # New functionality as of 0.1.5 (to_stream)
   def test_works_without_apply_styles_to_stream
     filename = 'without_apply_styles_to_stream'
     assert_equal nil, @workbook.styles_applied
@@ -43,7 +43,7 @@ class IntegrationTest < MiniTest::Test
     assert_equal 1, @workbook.style_index.count
   end
 
-  # Backwards compatibility with pre 0.1.4 (serialize)
+  # Backwards compatibility with pre 0.1.5 (serialize)
   def test_works_with_apply_styles_serialize
     filename = 'with_apply_styles_serialize'
     assert_equal nil, @workbook.styles_applied
@@ -56,7 +56,7 @@ class IntegrationTest < MiniTest::Test
     serialize(filename)
   end
 
-  # Backwards compatibility with pre 0.1.4 (to_stream)
+  # Backwards compatibility with pre 0.1.5 (to_stream)
   def test_works_with_apply_styles_to_stream
     filename = 'with_apply_styles_to_stream'
     assert_equal nil, @workbook.styles_applied
