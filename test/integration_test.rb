@@ -28,7 +28,7 @@ class IntegrationTest < MiniTest::Test
       sheet.add_style 'A1:B1', b: true
     end
     serialize(filename)
-    assert_equal 1, @workbook.style_index.count
+    assert_equal 1, @workbook.styles.style_index.count
   end
 
   # New functionality as of 0.1.5 (to_stream)
@@ -40,7 +40,7 @@ class IntegrationTest < MiniTest::Test
       sheet.add_style 'A1:B1', b: true
     end
     to_stream(filename)
-    assert_equal 1, @workbook.style_index.count
+    assert_equal 1, @workbook.styles.style_index.count
   end
 
   # Backwards compatibility with pre 0.1.5 (serialize)
@@ -52,7 +52,7 @@ class IntegrationTest < MiniTest::Test
       sheet.add_style 'A1:B1', b: true
     end
     @workbook.apply_styles # important for backwards compatibility
-    assert_equal 1, @workbook.style_index.count
+    assert_equal 1, @workbook.styles.style_index.count
     serialize(filename)
   end
 
@@ -65,7 +65,7 @@ class IntegrationTest < MiniTest::Test
       sheet.add_style 'A1:B1', b: true
     end
     @workbook.apply_styles # important for backwards compatibility
-    assert_equal 1, @workbook.style_index.count
+    assert_equal 1, @workbook.styles.style_index.count
     to_stream(filename)
   end
 
@@ -91,8 +91,8 @@ class IntegrationTest < MiniTest::Test
       sheet.add_border 'B3:D3', edges: [:bottom], style: :medium, color: '32f332'
     end
     serialize(filename)
-    assert_equal 12, @workbook.style_index.count
-    assert_equal 12 + 2, @workbook.style_index.keys.max
+    assert_equal 12, @workbook.styles.style_index.count
+    assert_equal 12 + 2, @workbook.styles.style_index.keys.max
   end
 
   def test_duplicate_borders
@@ -107,7 +107,7 @@ class IntegrationTest < MiniTest::Test
       sheet.add_border 'B2:D4'
     end
     serialize(filename)
-    assert_equal 8, @workbook.style_index.count
+    assert_equal 8, @workbook.styles.style_index.count
     assert_equal 8, @workbook.styled_cells.count
   end
 
@@ -122,7 +122,7 @@ class IntegrationTest < MiniTest::Test
       sheet.add_border 'B2:D2', edges: [:bottom], style: :thick, color: 'ff0000'
     end
     serialize(filename)
-    assert_equal 6, @workbook.style_index.count
+    assert_equal 6, @workbook.styles.style_index.count
     assert_equal 6, @workbook.styled_cells.count
 
     b2_cell_style = {
@@ -130,20 +130,26 @@ class IntegrationTest < MiniTest::Test
         style: :thick,
         color: 'ff0000',
         edges: [:bottom, :left, :top]
-      }
+      },
+      type: :xf,
+      name: 'Arial',
+      sz: 11,
+      family: 1
     }
-    assert_equal b2_cell_style, @workbook.style_index
-      .find { |_, v| v[:border][:edges] == [:bottom, :left, :top] }[1]
+    assert_equal b2_cell_style, @workbook.styles.style_index.values.find{|x| x == b2_cell_style}
 
     d3_cell_style = {
       border: {
         style: :thin,
         color: '000000',
         edges: [:bottom, :right]
-      }
+      },
+      type: :xf,
+      name: 'Arial',
+      sz: 11,
+      family: 1
     }
-    assert_equal d3_cell_style, @workbook.style_index
-      .find { |_, v| v[:border][:edges] == [:bottom, :right] }[1]
+    assert_equal d3_cell_style, @workbook.styles.style_index.values.find{|x| x == d3_cell_style}
   end
 
   def test_table_with_num_fmt
@@ -160,8 +166,8 @@ class IntegrationTest < MiniTest::Test
       sheet.add_style 'A2:A4', format_code: 'YYYY-MM-DD hh:mm:ss'
     end
     serialize(filename)
-    assert_equal 2, @workbook.style_index.count
-    assert_equal 2 + 2, @workbook.style_index.keys.max
+    assert_equal 2, @workbook.styles.style_index.count
+    assert_equal 2 + 2, @workbook.styles.style_index.keys.max
     assert_equal 5, @workbook.styled_cells.count
   end
 
@@ -179,7 +185,7 @@ class IntegrationTest < MiniTest::Test
     end
     serialize(filename)
     assert_equal 4, @workbook.styled_cells.count
-    assert_equal 3, @workbook.style_index.count
+    assert_equal 3, @workbook.styles.style_index.count
   end
 
   def test_multiple_named_styles
@@ -197,7 +203,7 @@ class IntegrationTest < MiniTest::Test
     end
     serialize(filename)
     assert_equal 4, @workbook.styled_cells.count
-    assert_equal 3, @workbook.style_index.count
+    assert_equal 3, @workbook.styles.style_index.count
   end
 
   # Overriding borders (part 1)
@@ -213,7 +219,7 @@ class IntegrationTest < MiniTest::Test
     end
     @workbook.apply_styles
     assert_equal 9, @workbook.styled_cells.count
-    assert_equal 2, @workbook.style_index.count
+    assert_equal 2, @workbook.styles.style_index.count
   end
 
   # Overriding borders (part 2)
@@ -229,6 +235,46 @@ class IntegrationTest < MiniTest::Test
     end
     @workbook.apply_styles
     assert_equal 8, @workbook.styled_cells.count
-    assert_equal 6, @workbook.style_index.count
+    assert_equal 6, @workbook.styles.style_index.count
+  end
+
+  def test_merge_styles_1
+    @filename = 'merge_styles_1'
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row
+      sheet.add_row ['', '1', '2', '3']
+      sheet.add_row ['', '4', '5', '6']
+      sheet.add_row ['', '7', '8', '9']
+      sheet.add_style 'B2:D4', b: true
+      sheet.add_style 'B2:D4', border: { style: :thin, color: '000000' }
+    end
+    @workbook.apply_styles
+    assert_equal 1, @workbook.styles.style_index.count
+  end
+
+  def test_merge_styles_2
+    @filename = 'merge_styles_2'
+    bold = @workbook.styles.add_style b: true
+
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row ['A1', 'B1'], style: [nil, bold]
+      sheet.add_row ['A2', 'B2']
+      sheet.add_border 'A1:B2'
+    end
+    @workbook.apply_styles
+    assert_equal 5, @workbook.styles.style_index.count
+  end
+  
+  def test_merge_styles_3
+    @filename = 'merge_styles_3'
+    bold = @workbook.styles.add_style b: true
+
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row ['A1', 'B1'], style: [nil, bold]
+      sheet.add_row ['A2', 'B2']
+      sheet.add_style 'B1:B2', bg_color: 'ff0000'
+    end
+    @workbook.apply_styles
+    assert_equal 2, @workbook.styles.style_index.count
   end
 end
