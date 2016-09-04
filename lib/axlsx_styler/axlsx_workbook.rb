@@ -1,4 +1,5 @@
 require 'set'
+require 'active_support/core_ext/hash/deep_merge'
 
 module AxlsxStyler
   module Axlsx
@@ -6,7 +7,7 @@ module AxlsxStyler
       # An array that holds all cells with styles
       attr_accessor :styled_cells
 
-      # Checks if styles are idexed to make it work for pre 0.1.5 version
+      # Checks if styles are indexed to make it work for pre 0.1.5 version
       # users that still explicitly call @workbook.apply_styles
       attr_accessor :styles_applied
 
@@ -17,8 +18,16 @@ module AxlsxStyler
 
       def apply_styles
         return unless styled_cells
+  
         styled_cells.each do |cell|
-          cell.style = styles.add_style(cell.raw_style)
+          if styles.style_index && styles.style_index[cell.style]
+            current_style = styles.style_index[cell.style]
+            new_style = current_style.deep_merge(cell.raw_style)
+          else
+            new_style = cell.raw_style
+          end
+
+          cell.style = styles.add_style(new_style)
         end
         self.styles_applied = true
       end

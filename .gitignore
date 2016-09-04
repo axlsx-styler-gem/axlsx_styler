@@ -22,3 +22,4 @@ tmp
 mkmf.log
 *.xlsx
 *.xlsx#
+.DS_Store

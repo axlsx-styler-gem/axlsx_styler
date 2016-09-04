@@ -54,9 +54,12 @@ module Axlsx
       index = style_index.key(raw_style)
       if !index
         index = original_add_style.bind(self).(style)
-        self.style_index[index] ||= raw_style
+        self.style_index[index] = raw_style
       end
       return index
     end
+
+    private 
+
   end
 end
