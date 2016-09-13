@@ -9,6 +9,6 @@ class CellTest < MiniTest::Test
     cell = row.cells.first
 
     cell.add_style b: true
-    assert_equal({ b: true }, cell.raw_style)
+    assert_equal({b: true}, cell.raw_style)
   end
 end
