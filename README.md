@@ -86,6 +86,7 @@ Producing the same spreadsheet with vanilla `axlsx` turns out [a bit trickier](.
 
 Version | Change
 --------|-------
+0.1.6 | Allow mixing vanilla `axlsx` styles and those from `add_style` and `add_border` (see [this example](./examples/mixing_styles.rb))
 0.1.5 | Hide `Workbook#apply_styles` method to make it easier to use.
 0.1.3 | Make border styles customazible.
 0.1.2 | Allow applying multiple style hashes.
