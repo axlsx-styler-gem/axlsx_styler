@@ -27,7 +27,9 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 1.9.3'
 
   spec.add_dependency 'axlsx', '~> 2.0'
-  spec.add_dependency 'activesupport', '>= 3.1'
+  # TODO: extract active_support/core_ext/hash/deep_merge
+  # and remove the dependency
+  spec.add_dependency 'activesupport', '~> 3.1'
 
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'rake', '~> 0.9'
