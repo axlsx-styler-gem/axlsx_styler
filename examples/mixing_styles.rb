@@ -1,4 +1,4 @@
-# As of v0.1.6 it is possible to add styles using vanilla axlsx approach
+# As of v0.1.7 it is possible to add styles using vanilla axlsx approach
 # as well as using add_style and add_border. This is something users have
 # been asking for.
 #
