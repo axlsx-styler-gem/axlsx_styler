@@ -1,0 +1,4 @@
+language: ruby
+gemfile:
+  - gemfiles/axlsx_2.gemfile
+  - gemfiles/axlsx_3.gemfile
