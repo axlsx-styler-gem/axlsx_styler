@@ -22,7 +22,7 @@ class IntegrationTest < MiniTest::Test
   # New functionality as of 0.1.5 (serialize)
   def test_works_without_apply_styles_serialize
     filename = 'without_apply_styles_serialize'
-    assert_equal nil, @workbook.styles_applied
+    assert_nil @workbook.styles_applied
     @workbook.add_worksheet do |sheet|
       sheet.add_row ['A1', 'B1']
       sheet.add_style 'A1:B1', b: true
@@ -34,7 +34,7 @@ class IntegrationTest < MiniTest::Test
   # New functionality as of 0.1.5 (to_stream)
   def test_works_without_apply_styles_to_stream
     filename = 'without_apply_styles_to_stream'
-    assert_equal nil, @workbook.styles_applied
+    assert_nil @workbook.styles_applied
     @workbook.add_worksheet do |sheet|
       sheet.add_row ['A1', 'B1']
       sheet.add_style 'A1:B1', b: true
@@ -46,7 +46,7 @@ class IntegrationTest < MiniTest::Test
   # Backwards compatibility with pre 0.1.5 (serialize)
   def test_works_with_apply_styles_serialize
     filename = 'with_apply_styles_serialize'
-    assert_equal nil, @workbook.styles_applied
+    assert_nil @workbook.styles_applied
     @workbook.add_worksheet do |sheet|
       sheet.add_row ['A1', 'B1']
       sheet.add_style 'A1:B1', b: true
@@ -59,7 +59,7 @@ class IntegrationTest < MiniTest::Test
   # Backwards compatibility with pre 0.1.5 (to_stream)
   def test_works_with_apply_styles_to_stream
     filename = 'with_apply_styles_to_stream'
-    assert_equal nil, @workbook.styles_applied
+    assert_nil @workbook.styles_applied
     @workbook.add_worksheet do |sheet|
       sheet.add_row ['A1', 'B1']
       sheet.add_style 'A1:B1', b: true
@@ -271,7 +271,7 @@ class IntegrationTest < MiniTest::Test
     assert_equal 3, @workbook.styles.style_index.count
     serialize(filename)
   end
-  
+
   def test_merge_styles_3
     filename = 'merge_styles_3'
     bold = @workbook.styles.add_style b: true

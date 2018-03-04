@@ -5,6 +5,6 @@ class WorkbookTest < MiniTest::Test
     wb.add_styled_cell 'Cell 1'
     wb.add_styled_cell 'Cell 2'
     assert_equal ['Cell 1', 'Cell 2'].to_set, wb.styled_cells
-    assert_equal nil, wb.styles_applied
+    assert_nil wb.styles_applied
   end
 end
