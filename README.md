@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sakovias/axlsx_styler.svg?branch=master)](https://travis-ci.org/sakovias/axlsx_styler)
+
 # axlsx_styler
 
 [axlsx](https://github.com/randym/axlsx) gem is an excellent tool to
