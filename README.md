@@ -1,3 +1,7 @@
+# MOVED
+
+This gem is now being maintained at the following location: https://github.com/davefp/axlsx_styler. Thanks Anton for maintaining the repo until now!
+
 [![Build Status](https://travis-ci.org/sakovias/axlsx_styler.svg?branch=master)](https://travis-ci.org/sakovias/axlsx_styler)
 
 # axlsx_styler
