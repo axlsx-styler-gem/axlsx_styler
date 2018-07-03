@@ -1,12 +1,13 @@
 # axlsx_styler
 
+[![Gem Version](https://badge.fury.io/rb/axlsx_styler.svg)](https://rubygems.org/gems/axlsx_styler)
 [![Build Status](https://travis-ci.org/sakovias/axlsx_styler.svg?branch=master)](https://travis-ci.org/sakovias/axlsx_styler)
 
 `axlsx_styler` is a gem that allows you to build clean and maintainable styles for your `axlsx` spreadsheets. Build your spreadsheeet with data and then apply styles later.
 
-While the [`axlsx`](https://github.com/randym/axlsx) gem is an excellent tool to build Excel spreadsheets in Ruby, the sheets styles are only applied immediately as the row is created. This makes it very difficult to style easily and effectively.
+While [`axlsx`](https://github.com/randym/axlsx) is an excellent tool to build Excel spreadsheets in Ruby, the sheets styles are only applied immediately as the row is created. This makes it very difficult to style easily and effectively.
 
-To solve this issue, `axlsx_styler` was born. It is a Ruby gem that solves this issue by allowing the separatation of styles from content within your `axlsx` code. It gives you the ability to fill out a spreadsheet with data and apply styles later. 
+To solve this issue, `axlsx_styler` was born to allow the separatation of styles from content within your `axlsx` code. It gives you the ability to fill out a spreadsheet with data and apply styles later. 
 
 Works well in any Rails app with [`axlsx_rails`](https://github.com/straydogstudio/axlsx_rails) or outside of any specific Ruby framework.
 
@@ -83,7 +84,7 @@ end
 axlsx.serialize 'grocery.xlsx'
 ```
 
-Producing the same spreadsheet using only `axlsx` is much more difficult. See this [See this example](./examples/vanilla_axlsx.md)
+If you try creating the same spreadsheet using only `axlsx`, you will find this is much more difficult. See this [See this example](./examples/vanilla_axlsx.md)
 
 # Credits
 
