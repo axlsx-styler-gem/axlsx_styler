@@ -86,6 +86,13 @@ axlsx.serialize 'grocery.xlsx'
 
 If you try creating the same spreadsheet using only `axlsx`, you will find this is much more difficult. See this [See this example](./examples/vanilla_axlsx.md)
 
+# Contributing
+
+We use the `appraisal` gem for testing multiple versions of `axlsx`. Please use the following steps to test using `appraisal`.
+
+1. `bundle exec appraisal install`
+2. `bundle exec appraisal rake test`
+
 # Credits
 
 Created by Anton Sakovich - @sakovias
