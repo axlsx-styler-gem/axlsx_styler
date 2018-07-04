@@ -1,9 +1,7 @@
 class SpreadsheetsController < ApplicationController
 
   def xlsx
-    respond_to do |format|
-      format.xlsx
-    end
+    render xlsx: "spreadsheets/xlsx", layout: false
   end
 
 end

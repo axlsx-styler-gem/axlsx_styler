@@ -1,6 +1,18 @@
-wb = xlsx_package.workbook
-wb.add_worksheet(name: "Buttons") do |sheet|
-  @buttons.each do |button|
-    sheet.add_row [button.name, button.category, button.price]
-  end
+workbook = xlsx_package.workbook
+workbook.add_worksheet do |sheet|
+  sheet.add_row
+  sheet.add_row ['', 'Product', 'Category',  'Price']
+  sheet.add_row ['', 'Butter', 'Dairy',      4.99]
+  sheet.add_row ['', 'Bread', 'Baked Goods', 3.45]
+  sheet.add_row ['', 'Broccoli', 'Produce',  2.99]
+  sheet.column_widths 5, 20, 20, 20
+
+  # using AxlsxStyler DSL
+  sheet.add_style 'B2:D2', b: true
+  sheet.add_style 'B2:B5', b: true
+  sheet.add_style 'B2:D2', bg_color: '95AFBA'
+  sheet.add_style 'B3:D5', bg_color: 'E2F89C'
+  sheet.add_style 'D3:D5', alignment: { horizontal: :left }
+  sheet.add_border 'B2:D5'
+  sheet.add_border 'B3:D3', { edges: [:top], style: :thick }
 end

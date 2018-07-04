@@ -17,7 +17,6 @@ workbook.add_worksheet do |sheet|
   sheet.add_style 'B3:D5', bg_color: 'E2F89C'
   sheet.add_style 'D3:D5', alignment: { horizontal: :left }
   sheet.add_border 'B2:D5'
-  sheet.add_border 'B3:D3', [:top], :thick
+  sheet.add_border 'B3:D3', { edges: [:top], style: :thick }
 end
-workbook.apply_styles
 axlsx.serialize File.expand_path('../../tmp/grocery.xlsx', __FILE__)

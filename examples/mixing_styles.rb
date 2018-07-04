@@ -18,5 +18,4 @@ workbook.add_worksheet do |sheet|
   sheet.add_style 'B2:D2', b: true
   sheet.add_border 'B2:D4'
 end
-workbook.apply_styles
 axlsx.serialize File.expand_path('../../tmp/mixing_styles.xlsx', __FILE__)

@@ -30,6 +30,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'appraisal'
   spec.add_development_dependency 'rails', '>= 5.2'
   spec.add_development_dependency 'sqlite3'
-  spec.add_development_dependency 'responders'
   spec.add_development_dependency 'axlsx_rails'
 end
