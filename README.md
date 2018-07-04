@@ -1,7 +1,7 @@
 # axlsx_styler
 
 [![Gem Version](https://badge.fury.io/rb/axlsx_styler.svg)](https://rubygems.org/gems/axlsx_styler)
-[![Build Status](https://travis-ci.org/sakovias/axlsx_styler.svg?branch=master)](https://travis-ci.org/sakovias/axlsx_styler)
+[![Build Status](https://travis-ci.org/axlsx-styler-gem/axlsx_styler.svg?branch=master)](https://travis-ci.org/axlsx-styler-gem/axlsx_styler)
 
 `axlsx_styler` is a gem that allows you to build clean and maintainable styles for your `axlsx` spreadsheets. Build your spreadsheeet with data and then apply styles later.
 
