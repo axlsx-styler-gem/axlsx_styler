@@ -12,3 +12,10 @@ task :test do
 end
 
 task default: :test
+
+task :console do
+  require 'axlsx_styler'
+
+  require 'irb'
+  binding.irb
+end

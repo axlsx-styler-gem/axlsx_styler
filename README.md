@@ -84,7 +84,9 @@ end
 axlsx.serialize 'grocery.xlsx'
 ```
 
-If you try creating the same spreadsheet using only `axlsx`, you will find this is much more difficult. See this [See this example](./examples/vanilla_axlsx.md)
+If you try creating this same spreadsheet using only `axlsx`, you will find this is much more difficult. See this [See this example](./examples/vanilla_axlsx.md)
+
+For more examples, please see the [examples folder](./examples/)
 
 # Contributing
 
