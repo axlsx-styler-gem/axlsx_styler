@@ -23,8 +23,8 @@ mkmf.log
 *.xlsx
 *.xlsx#
 .DS_Store
-test/**.sqlite3.db
-test/**.sqlite3
-test/dummy_app/tmp/**/*.xlsx
+test/dummy_app/**/*.sqlite3.db
+test/dummy_app/**/*.sqlite3
+test/dummy_app/**/*.xlsx
 test/dummy_app/**/*.log
 tmp/
