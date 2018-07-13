@@ -1,7 +1,8 @@
 # axlsx_styler
 
-[![Gem Version](https://badge.fury.io/rb/axlsx_styler.svg)](https://rubygems.org/gems/axlsx_styler)
-[![Build Status](https://travis-ci.org/axlsx-styler-gem/axlsx_styler.svg?branch=master)](https://travis-ci.org/axlsx-styler-gem/axlsx_styler)
+<a href="https://badge.fury.io/rb/axlsx_styler" target="_blank"><img height="21" style='border:0px;height:21px;' border='0' src="https://badge.fury.io/rb/axlsx_styler.svg" alt="Gem Version"></a>
+<a href='https://travis-ci.org/axlsx-styler-gem/axlsx_styler' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://api.travis-ci.org/axlsx-styler-gem/axlsx_styler.svg?branch=master' border='0' alt='Build Status' /></a>
+<a href='https://rubygems.org/gems/axlsx_styler' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/axlsx_styler?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
 
 `axlsx_styler` is a gem that allows you to build clean and maintainable styles for your `axlsx` spreadsheets. Build your spreadsheeet with data and then apply styles later.
 
@@ -99,4 +100,4 @@ We use the `appraisal` gem for testing multiple versions of `axlsx`. Please use 
 
 Created by Anton Sakovich - @sakovias
 
-Maintained by Weston Ganger - @westonganger - Currently utilizing `axlsx_styler` within the [spreadsheet_architect](https://github.com/westonganger/spreadsheet_architect) gem
+Maintained by Weston Ganger - @westonganger - Uses `axlsx_styler` within the gem,  [`spreadsheet_architect`](https://github.com/westonganger/spreadsheet_architect)
