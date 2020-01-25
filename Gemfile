@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'axlsx', '3.0.0.pre'
+### Must remain in the Gemfile, not gemspec, otherwise Rails integration tests fail
+gem 'caxlsx_rails'
 
 gemspec

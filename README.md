@@ -10,7 +10,7 @@ While [`axlsx`](https://github.com/randym/axlsx) is an excellent tool to build E
 
 To solve this issue, `axlsx_styler` was born to allow the separatation of styles from content within your `axlsx` code. It gives you the ability to fill out a spreadsheet with data and apply styles later. 
 
-Works well in any Rails app with [`axlsx_rails`](https://github.com/straydogstudio/axlsx_rails) or outside of any specific Ruby framework.
+Works well in any Rails app or outside of any specific Ruby framework.
 
 # Usage
 

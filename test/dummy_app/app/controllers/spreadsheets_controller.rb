@@ -1,7 +1,7 @@
 class SpreadsheetsController < ApplicationController
 
-  def xlsx
-    render xlsx: "spreadsheets/xlsx", layout: false
+  def test
+    render xlsx: "test", layout: false
   end
 
 end

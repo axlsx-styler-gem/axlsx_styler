@@ -1,3 +1,3 @@
 Dummy::Application.routes.draw do
-  get 'spreadsheet/xlsx', to: 'spreadsheets#xlsx'
+  get 'spreadsheets/test', to: 'spreadsheets#test'
 end

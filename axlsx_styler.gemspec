@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = Dir.glob("{test/**/*}")
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 1.9.3'
+  spec.required_ruby_version = '>= 2.3.0'
 
-  spec.add_dependency 'axlsx', ['>= 2.0', '< 4']
+  spec.add_dependency 'caxlsx', '>= 2.0.2'
   spec.add_dependency 'activesupport', '>= 3.1'
 
   spec.add_development_dependency 'bundler'
@@ -30,5 +30,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'appraisal'
   spec.add_development_dependency 'rails'
   spec.add_development_dependency 'sqlite3'
-  spec.add_development_dependency 'axlsx_rails'
 end
