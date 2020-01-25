@@ -6,11 +6,17 @@ rvm:
   - 2.3
   - 2.4
   - 2.5
+  - 2.6
+  - 2.7
+  - ruby-head
+
+jobs:
+  allow_failures:
+  - rvm: ruby-head
 
 gemfile:
-  - gemfiles/axlsx_master.gemfile
-  - gemfiles/axlsx_3.0.0.pre.gemfile
-  - gemfiles/axlsx_2.x.gemfile
+  - gemfiles/caxlsx.gemfile
+  - gemfiles/caxlsx_3.0.0.gemfile
 
 notifications:
   email: false

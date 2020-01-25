@@ -2,6 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "axlsx", git: "https://github.com/randym/axlsx.git"
+gem "caxlsx_rails"
+gem "caxlsx", "3.0.0"
 
 gemspec path: "../"
