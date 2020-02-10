@@ -8,7 +8,7 @@
 
 While [`axlsx`](https://github.com/randym/axlsx) is an excellent tool to build Excel spreadsheets in Ruby, the sheets styles are only applied immediately as the row is created. This makes it very difficult to style easily and effectively.
 
-To solve this issue, `axlsx_styler` was born to allow the separatation of styles from content within your `axlsx` code. It gives you the ability to fill out a spreadsheet with data and apply styles later. 
+To solve this issue, `axlsx_styler` was born to allow the separation of styles from content within your `axlsx` code. It gives you the ability to fill out a spreadsheet with data and apply styles later. 
 
 Works well in any Rails app or outside of any specific Ruby framework.
 
