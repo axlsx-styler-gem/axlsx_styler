@@ -1,5 +1,7 @@
 # Changelog
 
+- **Unreleased**
+  - [PR #28](https://github.com/axlsx-styler-gem/axlsx_styler/pull/28) - Allow passing arrays of cell ranges to the `add_style` and `add_border` methods
 - **1.0.0 - January 5, 2020**
   - Switch to the `caxlsx` gem (Community Axlsx) from the legacy unmaintained `axlsx` gem. Axlsx has had a long history of being poorly maintained so this community gem improves the situation.
   - Require Ruby 2.3+
