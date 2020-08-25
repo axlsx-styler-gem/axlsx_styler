@@ -36,6 +36,12 @@ centered = { alignment: { horizontal: :center } }
 sheet.add_style 'A2:D2', bold, centered
 ```
 
+Applying a style to multiple ranges at once.
+
+```ruby
+sheet.add_style ['A2:G2', "A8:G8", "A12:G12"], b: true, sz: 14
+```
+
 ## Borders
 
 The border style is to draw a thin black border on all four edges of the selected cell range.
@@ -49,6 +55,12 @@ You can easily customize the border styles.
 ```ruby
 sheet.add_border 'B2:D5', [:bottom, :right]
 sheet.add_border 'B2:D5', { edges: [:bottom, :right], style: :thick, color: 'FF0000' }
+```
+
+Applying border to multiple ranges at once.
+
+```ruby
+sheet.add_border ['A2:G2', "A8:G8", "A12:G12"]
 ```
 
 
