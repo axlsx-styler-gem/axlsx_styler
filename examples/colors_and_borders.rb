@@ -16,11 +16,9 @@ workbook.add_worksheet do |sheet|
   sheet.add_style 'B2:D2', bg_color: '95AFBA'
   sheet.add_style 'B3:D5', bg_color: 'E2F89C'
   sheet.add_style 'D3:D5', alignment: { horizontal: :left }
-  sheet.add_style ['C2', 'C3'], fg_color: 'FF0000'
   sheet.add_style ['C3:C4', 'D3:D4'], fg_color: '00FF00'
   sheet.add_border 'B2:D5'
   sheet.add_border 'B3:D3', { edges: [:top], style: :thick }
-  sheet.add_border ['C2', 'C3']
   sheet.add_border ['C3:C4', 'D3:D4']
 end
 axlsx.serialize File.expand_path('../../tmp/grocery.xlsx', __FILE__)

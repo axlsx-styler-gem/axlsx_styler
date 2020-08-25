@@ -23,7 +23,6 @@ end
 require 'minitest/reporters'
 Minitest::Reporters.use!
 
-require 'custom_assertions'
 require 'helper_methods'
 
 ### Cleanup old test spreadsheets

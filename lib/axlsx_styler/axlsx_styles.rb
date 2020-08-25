@@ -1,39 +1,33 @@
 module AxlsxStyler
   module Styles
 
-    # An index for cell styles
-    #   {
-    #     1 => < style_hash >,
-    #     2 => < style_hash >,
-    #     ...
-    #     K => < style_hash >
-    #   }
-    # where keys are Cell#raw_style and values are styles codes as per Axlsx::Style
-    attr_accessor :style_index
+    # An index for cell styles where keys are styles codes as per Axlsx::Style and values are Cell#raw_style
+    # The reason for the backward key/value ordering is that style lookup must be most efficient, while `add_style` can be less efficient
+    def style_index
+      @style_index ||= {}
+    end
 
     # Ensure plain axlsx styles are added to the axlsx_styler style_index cache
-    def add_style(*args)
-      self.style_index ||= {}
-
-      style = args.first
-
-      if style[:type] != :dxf
-        raw_style = {type: :xf, name: 'Arial', sz: 11, family: 1}.merge(style)
+    def add_style(options={})
+      if options[:type] == :dxf
+        style_id = super
+      else
+        raw_style = {type: :xf, name: 'Arial', sz: 11, family: 1}.merge(options)
 
         if raw_style[:format_code]
           raw_style.delete(:num_fmt)
         end
 
-        index = style_index.key(raw_style)
+        style_id = style_index.key(raw_style)
 
-        if !index
-          index = super 
+        if !style_id
+          style_id = super 
 
-          self.style_index[index] = raw_style
+          style_index[style_id] = raw_style
         end
-
-        return index
       end
+
+      return style_id
     end
 
   end

@@ -19,8 +19,9 @@ module AxlsxStyler
       return unless styled_cells
 
       styled_cells.each do |cell|
-        if styles.style_index && styles.style_index[cell.style]
-          current_style = styles.style_index[cell.style]
+        current_style = styles.style_index[cell.style]
+
+        if current_style
           new_style = current_style.deep_merge(cell.raw_style)
         else
           new_style = cell.raw_style
@@ -28,6 +29,7 @@ module AxlsxStyler
 
         cell.style = styles.add_style(new_style)
       end
+
       self.styles_applied = true
     end
 

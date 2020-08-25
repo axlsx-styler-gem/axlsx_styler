@@ -3,8 +3,9 @@ require_relative './border_creator'
 module AxlsxStyler
   module Worksheet
     # Example to add a single style:
-    #   add_style 'A1:B5', b: true, sz: 14
+    #   add_style 'A1:B5', b: false
     #   add_style ['B1', 'B3'], b: false
+    #   add_style ['D3:D4', 'F2:F6'], b: false 
     #
     # Example to add multiple styles:
     #   bold = { b: true }
@@ -17,7 +18,9 @@ module AxlsxStyler
 
       cell_refs.each do |cell_ref|
         item = self[cell_ref]
+
         cells = item.is_a?(Array) ? item : [item]
+
         cells.each do |cell|
           styles.each do |style|
             cell.add_style(style)
