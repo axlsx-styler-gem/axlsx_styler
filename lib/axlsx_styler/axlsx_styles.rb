@@ -13,21 +13,27 @@ module AxlsxStyler
 
     # Ensure plain axlsx styles are added to the axlsx_styler style_index cache
     def add_style(*args)
-      style = args.first
-
       self.style_index ||= {}
 
-      raw_style = {type: :xf, name: 'Arial', sz: 11, family: 1}.merge(style)
-      if raw_style[:format_code]
-        raw_style.delete(:num_fmt)
-      end
+      style = args.first
 
-      index = style_index.key(raw_style)
-      if !index
-        index = super 
-        self.style_index[index] = raw_style
+      if style[:type] != :dxf
+        raw_style = {type: :xf, name: 'Arial', sz: 11, family: 1}.merge(style)
+
+        if raw_style[:format_code]
+          raw_style.delete(:num_fmt)
+        end
+
+        index = style_index.key(raw_style)
+
+        if !index
+          index = super 
+
+          self.style_index[index] = raw_style
+        end
+
+        return index
       end
-      return index
     end
 
   end

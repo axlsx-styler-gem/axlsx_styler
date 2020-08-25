@@ -1,5 +1,7 @@
 # Changelog
 
+- **Unreleased** 
+  - [Issue #29](https://github.com/axlsx-styler-gem/axlsx_styler/issues/299) - Fix error `Invalid cellXfs id` when applying `dxf` styles
 - **1.0.0 - January 5, 2020**
   - Switch to the `caxlsx` gem (Community Axlsx) from the legacy unmaintained `axlsx` gem. Axlsx has had a long history of being poorly maintained so this community gem improves the situation.
   - Require Ruby 2.3+
