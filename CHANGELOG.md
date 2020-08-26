@@ -1,6 +1,6 @@
 # Changelog
 
-- **Unreleased**
+- **1.1.0 - August 26, 2020**
   - [Issue #29](https://github.com/axlsx-styler-gem/axlsx_styler/issues/29) - Fix error `Invalid cellXfs id` when applying `dxf` styles
   - [PR #28](https://github.com/axlsx-styler-gem/axlsx_styler/pull/28) - Allow passing arrays of cell ranges to the `add_style` and `add_border` methods
 - **1.0.0 - January 5, 2020**
