@@ -12,7 +12,10 @@ module AxlsxStyler
       if options[:type] == :dxf
         style_id = super
       else
-        raw_style = {type: :xf, name: 'Arial', sz: 11, family: 1}.merge(options)
+        ### https://github.com/caxlsx/caxlsx/blob/9b6a78f43b9415bd155bddf6a6d872f5d5555595/lib/axlsx/stylesheet/styles.rb#L459
+        font_defaults = {name: @fonts.first.name, sz: @fonts.first.sz, family: @fonts.first.family} 
+
+        raw_style = {type: :xf}.merge(font_defaults).merge(options)
 
         if raw_style[:format_code]
           raw_style.delete(:num_fmt)
