@@ -6,7 +6,7 @@ end
 
 # Save to a file by getting contents from stream
 def to_stream(filename)
-  File.open(File.expand_path("../../tmp/#{filename}.xlsx", __FILE__), 'w') do |f|
+  File.open(File.expand_path("../../tmp/#{filename}.xlsx", __FILE__), 'wb') do |f|
     f.write @axlsx.to_stream.read
   end
 end
