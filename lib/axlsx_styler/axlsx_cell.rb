@@ -6,8 +6,14 @@ module AxlsxStyler
 
     def add_style(style)
       self.raw_style ||= {}
-      add_to_raw_style(style)
-      workbook.add_styled_cell self
+
+      if style.is_a?(Integer)
+        self.raw_style = workbook.styles.style_index.fetch(style)
+      else
+        add_to_raw_style(style)
+      end
+
+      workbook.add_styled_cell(self)
     end
 
     private
@@ -17,9 +23,8 @@ module AxlsxStyler
     end
 
     def add_to_raw_style(style)
-      # using deep_merge from active_support:
-      # with regular Hash#merge adding borders fails miserably
-      new_style = raw_style.deep_merge style
+      # using deep_merge from ActiveSupport because regular Hash#merge fails when adding borders
+      new_style = raw_style.deep_merge(style)
 
       if with_border?(raw_style) && with_border?(style)
         border_at = (raw_style[:border][:edges] || all_edges) + (style[:border][:edges] || all_edges)
