@@ -7,11 +7,11 @@ module AxlsxStyler
     def add_style(style)
       self.raw_style ||= {}
 
-      if style.is_a?(Integer)
-        self.raw_style = workbook.styles.style_index.fetch(style)
-      else
+      #if style.is_a?(Integer)
+      #  self.raw_style = workbook.styles.style_index.fetch(style)
+      #else
         add_to_raw_style(style)
-      end
+      #end
 
       workbook.add_styled_cell(self)
     end

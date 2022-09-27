@@ -16,7 +16,9 @@ module AxlsxStyler
     end
 
     def apply_styles
-      return unless styled_cells
+      self.styles_applied = true
+
+      return true if styled_cells.nil?
 
       styled_cells.each do |cell|
         current_style = styles.style_index[cell.style]
@@ -30,7 +32,7 @@ module AxlsxStyler
         cell.style = styles.add_style(new_style)
       end
 
-      self.styles_applied = true
+      return true
     end
 
   end

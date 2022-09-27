@@ -41,4 +41,16 @@ class RegressionsTest < MiniTest::Test
     assert_equal @workbook.styles.cellXfs.count, 6
   end
 
+  def test_passing_style_id_to_add_row_style
+    filename = "test_style_id_passed_to_add_row_style"
+    bold = @workbook.styles.add_style border: { style: :thin, color: "000000" }
+
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row ['A1', 'B1'], style: bold
+    end
+    @workbook.apply_styles
+    assert_equal 1, @workbook.styles.style_index.count
+    serialize(filename)
+  end
+
 end
