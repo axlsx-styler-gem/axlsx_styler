@@ -1,7 +1,7 @@
 name: Tests
 on:
   push:
-    branches: ['*']
+    branches: ['master']
   pull_request:
     branches: ['*']
 
@@ -13,7 +13,7 @@ jobs:
       matrix:
         include:
           ### TEST ALL RUBY VERSIONS, USE DEFAULT GEMFILE
-          - ruby: 2.3
+          #- ruby: 2.3 ### github actions giving issues with Ruby 2.3
           - ruby: 2.4
           - ruby: 2.5
           - ruby: 2.6
@@ -31,17 +31,13 @@ jobs:
       BUNDLE_GEMFILE: "${{ matrix.gemfile }}"
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Install ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: "${{ matrix.ruby }}"
-
-    - name: Bundle
-      run: |
-        gem install bundler
-        bundle install
+        bundler-cache: true
 
     - name: Run tests
       run: |
