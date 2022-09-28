@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'appraisal'
   spec.add_development_dependency 'rails'
   spec.add_development_dependency 'sqlite3'
+  spec.add_development_dependency 'pry'
 
   if RUBY_VERSION.to_f >= 2.4
     spec.add_development_dependency "warning"

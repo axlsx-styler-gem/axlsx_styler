@@ -10,6 +10,8 @@ rescue LoadError
   # Do nothing
 end
 
+require 'pry'
+
 require File.expand_path("../dummy_app/config/environment.rb",  __FILE__)
 
 migration_path = Rails.root.join('db/migrate')

@@ -41,4 +41,40 @@ class RegressionsTest < MiniTest::Test
     assert_equal @workbook.styles.cellXfs.count, 6
   end
 
+  def test_custom_default_font_and_size
+    @workbook.styles.fonts[0].name = 'Pontiac' ### TODO, is this a valid font name in all environments
+    @workbook.styles.fonts[0].sz = 12
+
+    @workbook.add_worksheet do |sheet|
+      sheet.add_row [1,2,3]
+      sheet.add_style "A1:C1", { color: "FFFFFF" }
+    end
+
+    @workbook.apply_styles
+
+    assert_equal 1, @workbook.styles.style_index.size
+    
+    assert_equal(
+      {
+        type: :xf, 
+        name: "Pontiac", 
+        sz: 12, 
+        family: 1, 
+        color: "FFFFFF",
+      }, 
+      @workbook.styles.style_index.values.first
+    )
+
+    parsed_sheet = Nokogiri::XML(@workbook.worksheets.first.to_xml_string) 
+    parsed_styles = Nokogiri::XML(@workbook.worksheets.first.to_xml_string) 
+
+    ### TODO want to examine xml contents to ensure font working
+    ### Could possibly just do manual testing if required but should be automatable
+    
+    # puts parsed_sheet.to_xml_string
+    # puts parsed_styles.to_xml_string
+
+    binding.pry
+  end
+
 end
