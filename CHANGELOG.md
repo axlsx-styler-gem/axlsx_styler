@@ -1,7 +1,9 @@
 # Changelog
 
 - **Unreleased**
+  - This gem has now been merged into caxlsx v3.3.0 as such we are now deprecating this gem and dropping support for caxlsx v3.3.0+
   - [#35](https://github.com/axlsx-styler-gem/axlsx_styler/pull/35) - Do not overwrite spreadsheet default font attributes if they have been customized
+
 - **1.1.0 - August 26, 2020**
   - [Issue #29](https://github.com/axlsx-styler-gem/axlsx_styler/issues/29) - Fix error `Invalid cellXfs id` when applying `dxf` styles
   - [PR #28](https://github.com/axlsx-styler-gem/axlsx_styler/pull/28) - Allow passing arrays of cell ranges to the `add_style` and `add_border` methods

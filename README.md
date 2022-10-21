@@ -4,9 +4,12 @@
 <a href='https://github.com/axlsx-styler-gem/axlsx_styler/actions' target='_blank'><img src="https://github.com/axlsx-styler-gem/axlsx_styler/workflows/Tests/badge.svg" style="max-width:100%;" height='21' style='border:0px;height:21px;' border='0' alt="CI Status"></a>
 <a href='https://rubygems.org/gems/axlsx_styler' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/axlsx_styler?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
 
+> **Note**
+> **This gem has been [merged upstream into caxlsx v3.3.0](https://github.com/caxlsx/caxlsx/blob/master/CHANGELOG.md#v3.3.0). Please remove this gem from your Gemfile when using caxlsx@v3.3.0 and above.**
+
 `axlsx_styler` is a gem that allows you to build clean and maintainable styles for your `axlsx` spreadsheets. Build your spreadsheeet with data and then apply styles later.
 
-While [`axlsx`](https://github.com/randym/axlsx) is an excellent tool to build Excel spreadsheets in Ruby, the sheets styles are only applied immediately as the row is created. This makes it very difficult to style easily and effectively.
+While [`axlsx`](https://github.com/caxlsx/caxlsx) is an excellent tool to build Excel spreadsheets in Ruby, the sheets styles are only applied immediately as the row is created. This makes it very difficult to style easily and effectively.
 
 To solve this issue, `axlsx_styler` was born to allow the separation of styles from content within your `axlsx` code. It gives you the ability to fill out a spreadsheet with data and apply styles later. 
 
