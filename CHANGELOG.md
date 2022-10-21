@@ -1,6 +1,9 @@
 # Changelog
 
 - **Unreleased**
+  - Nothing yet
+
+- **1.2.0 - October 21, 2022**
   - This gem has now been merged into caxlsx v3.3.0 as such we are now deprecating this gem and dropping support for caxlsx v3.3.0+
   - [#35](https://github.com/axlsx-styler-gem/axlsx_styler/pull/35) - Do not overwrite spreadsheet default font attributes if they have been customized
 
