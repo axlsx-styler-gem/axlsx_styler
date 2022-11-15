@@ -15,7 +15,6 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.files         = Dir.glob("{lib/**/*}") + %w{ LICENSE.txt README.md Rakefile CHANGELOG.md }
-  spec.test_files    = Dir.glob("{test/**/*}")
   spec.require_paths = ['lib']
 
   spec.required_ruby_version = '>= 2.3.0'
