@@ -2,7 +2,7 @@
 
 <a href="https://badge.fury.io/rb/axlsx_styler" target="_blank"><img height="21" style='border:0px;height:21px;' border='0' src="https://badge.fury.io/rb/axlsx_styler.svg" alt="Gem Version"></a>
 <a href='https://github.com/axlsx-styler-gem/axlsx_styler/actions' target='_blank'><img src="https://github.com/axlsx-styler-gem/axlsx_styler/workflows/Tests/badge.svg" style="max-width:100%;" height='21' style='border:0px;height:21px;' border='0' alt="CI Status"></a>
-<a href='https://rubygems.org/gems/axlsx_styler' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://ruby-gem-downloads-badge.herokuapp.com/axlsx_styler?label=rubygems&type=total&total_label=downloads&color=brightgreen' border='0' alt='RubyGems Downloads' /></a>
+<a href='https://rubygems.org/gems/axlsx_styler' target='_blank'><img height='21' style='border:0px;height:21px;' src='https://img.shields.io/gem/dt/axlsx_styler?color=brightgreen&label=Rubygems%20Downloads' border='0' alt='RubyGems Downloads' /></a>
 
 > **Note**
 > **This gem has been [merged upstream into caxlsx v3.3.0](https://github.com/caxlsx/caxlsx/blob/master/CHANGELOG.md#v3.3.0). Please remove this gem from your Gemfile when using caxlsx@v3.3.0 and above.**
